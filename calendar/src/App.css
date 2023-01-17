@@ -1,0 +1,14 @@
+h1 {
+  font-style: Regular;
+  font-size: 60px;
+}
+
+/* * {
+ font-family: @import{https://fonts.googleapis.com/css?family=Mulish};
+} */
+
+div {
+  background-color: aqua;
+  height: 150vh;
+  width: 50%;
+}
