@@ -3,12 +3,30 @@ h1 {
   font-size: 60px;
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100vh;
+}
+
+.Imagens {
+  background-image: url('./components/imgs/Home.png');
+  text-align:center;
+  background-repeat: no-repeat;
+  width: 50vw;
+  height: 100vh;
+  float: right;
+}
+
+
+
 /* * {
  font-family: @import{https://fonts.googleapis.com/css?family=Mulish};
 } */
-
-div {
-  background-color: aqua;
-  height: 150vh;
-  width: 50%;
-}
