@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Mulish");
+
+h1 {
+  font-family: 'mulish', sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+}
+
+input {
+    border-radius: 50px;
+    border: 1px #FFFFFF solid;
+    background-color: #29292C;
+    width: 380px;
+    height: 60px;
+    padding-left: 25px;
+    margin-bottom: 18px;
+}
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100vh;
+  flex-direction: column;
+}
+
+
+

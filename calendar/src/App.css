@@ -1,11 +1,7 @@
-h1 {
-  font-style: Regular;
-  font-size: 60px;
-}
+
 
 .container {
   display: flex;
-  justify-content: space-between;
 }
 
 .formulario {
@@ -14,17 +10,15 @@ h1 {
   align-items: center;
   width: 50vw;
   height: 100vh;
+  flex-direction: column;
 }
 
 .Imagens {
   background-image: url('./components/imgs/Home.png');
   text-align:center;
-  background-repeat: no-repeat;
   width: 50vw;
   height: 100vh;
-  float: right;
 }
-
 
 
 /* * {
