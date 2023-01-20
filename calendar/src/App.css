@@ -4,17 +4,9 @@
   display: flex;
 }
 
-.formulario {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50vw;
-  height: 100vh;
-  flex-direction: column;
-}
-
 .Imagens {
   background-image: url('./components/imgs/Home.png');
+  background-repeat: no-repeat;
   text-align:center;
   width: 50vw;
   height: 100vh;
