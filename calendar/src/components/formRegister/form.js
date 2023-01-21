@@ -9,54 +9,37 @@ function Registro() {
       </div>
 
       <div className="forms">
-        <div>
-          {" "}
-          <label>
-            first name
-            <input type="text" placeholder="Your first name" />
-          </label>
+        <div className="label_corrent">
+          <label>first name </label>
+          <input type="text" placeholder="Your first name" />
         </div>
-        <div>
-          <label>
-            last name
-            <input placeholder="Your last name" />
-          </label>
+        <div className="label_corrent">
+          <label>last name</label>
+          <input placeholder="Your last name" />
         </div>
-        <div>
-          <label>
-            birth date
-            <input placeholder="YMM/DD/YYYY" />
-          </label>
+        <div className="label_corrent">
+          <label>birth date</label>
+          <input placeholder="YMM/DD/YYYY" />
         </div>
-        <div>
-          <label>
-            Country
-            <input placeholder="Your Country" />
-          </label>
+        <div className="label_corrent">
+          <label>Country</label>
+          <input placeholder="Your Country" />
         </div>
-        <div>
-          <label>
-            City
-            <input placeholder="Your City" />
-          </label>
+        <div className="label_corrent">
+          <label>City </label>
+          <input placeholder="Your City" />
         </div>
-        <div>
-          <label>
-            e-mail
-            <input placeholder="Valid e-mail here" />
-          </label>
+        <div className="label_corrent">
+          <label>e-mail</label>
+          <input placeholder="Valid e-mail here" />
         </div>
-        <div>
-          <label>
-            password
-            <input placeholder="Your password" />
-          </label>
+        <div className="label_corrent">
+          <label>password</label>
+          <input placeholder="Your password" />
         </div>
-        <div>
-          <label>
-            password
-            <input placeholder="Confirm your password" />
-          </label>
+        <div className="label_corrent">
+          <label>password</label>
+          <input placeholder="Confirm your password" />
         </div>
       </div>
 
