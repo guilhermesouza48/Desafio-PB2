@@ -52,7 +52,7 @@ button {
 }
 
 
-.formulario .forms {
+.main .forms {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -60,17 +60,17 @@ button {
   margin-bottom: 30px;
 }
 
-.formulario .forms .label_corrent {
+.main .forms .label_chain {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.formulario .forms .label_corrent label {
-  width: 100px;
+.main .forms .label_chain label {
+  width: 90px;
 }
 
-.formulario {
+.main {
   font-family: "mulish", sans-serif;
   width: 50vw;
   height: 100vh;
