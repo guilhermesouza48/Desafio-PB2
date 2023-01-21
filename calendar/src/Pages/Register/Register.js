@@ -1,6 +1,24 @@
-import "./form.css";
+import React from "react";
+import "./Register.css";
+import Imagens from "../../components/imagens/img";
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+// import axios from "axios";
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
 
-function Registro() {
+
+const Register = () => {
+    // const [name, setName] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // } 
+
+
   return (
     <div className="main">
       <div className="forms">
@@ -10,7 +28,7 @@ function Registro() {
         </div>
         <div className="label_chain">
           <label>first name </label>
-          <input type="text"  placeholder="Your first name" />
+          <input type="text" placeholder="Your first name" />
         </div>
         <div className="label_chain">
           <label>last name</label>
@@ -42,8 +60,9 @@ function Registro() {
         </div>
         <button type="submit">Register Now</button>
       </div>
+      <Imagens/>
     </div>
   );
-}
+};
 
-export default Registro;
+export default Register;

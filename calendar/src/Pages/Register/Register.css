@@ -73,9 +73,12 @@ button {
 
 .main {
   font-family: "mulish", sans-serif;
-  width: 50vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #33383D , #1C1D20);
 }
