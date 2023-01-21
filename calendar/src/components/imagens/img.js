@@ -1,7 +1,8 @@
 import Logo from "./compass.png"
 import "./img.css"
+import React from "react";
 
-function Imagens() {
+const Imagens = () => {
   return (
     <div className="Imagens">
       <img id="logoimg" src={Logo} alt="Logo compass" />
@@ -9,4 +10,5 @@ function Imagens() {
   );
 }
 
-export default Imagens;
+
+export {Imagens};

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Register.css";
-import Imagens from "../../components/imagens/img";
+import {Imagens} from "../../components/imagens/img";
 // import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 // import axios from "axios";
