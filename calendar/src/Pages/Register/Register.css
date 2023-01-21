@@ -49,6 +49,7 @@ button {
   font-style: bold;
   font-size: 32px;
   font-weight: 700;
+  margin-top: 20px;
 }
 
 
@@ -57,7 +58,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .main .forms .label_chain {
@@ -77,5 +78,4 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }

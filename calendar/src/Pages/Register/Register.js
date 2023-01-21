@@ -3,15 +3,14 @@ import "./form.css";
 function Registro() {
   return (
     <div className="main">
-      <div className="texts">
-        <h1>Welcome,</h1>
-        <p>Please, register to continue</p>
-      </div>
-
       <div className="forms">
+        <div className="texts">
+          <h1>Welcome,</h1>
+          <p>Please, register to continue</p>
+        </div>
         <div className="label_chain">
           <label>first name </label>
-          <input type="text" placeholder="Your first name" />
+          <input type="text"  placeholder="Your first name" />
         </div>
         <div className="label_chain">
           <label>last name</label>
@@ -41,9 +40,8 @@ function Registro() {
           <label>password</label>
           <input placeholder="Confirm your password" />
         </div>
+        <button type="submit">Register Now</button>
       </div>
-
-      <button onclick="">Register Now</button>
     </div>
   );
 }
