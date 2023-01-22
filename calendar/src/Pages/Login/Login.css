@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Mulish");
+
+h1 {
+  font-weight: 400;
+  font-size: 60px;
+  margin: 0;
+}
+
+p {
+  font-weight: 400;
+  font-size: 16px;
+  color: #E0E0E0;
+}
+
+
+
+label {
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  color: #E0E0E0;
+}
+
+
+.texts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 27vw;
+  margin-bottom: 40px;
+}
+
+button {
+  background-image: linear-gradient(to bottom, #ff2d04, #c13216);
+  border: 2px solid;
+  border-image: linear-gradient(to bottom, #ff2d04, #c13216);
+  border-radius: 50px;
+  width: 471px;
+  height: 67px;
+  color: #ffffff;
+  font-family: "mulish", sans-serif;
+  font-style: bold;
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+
+.main .forms {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.main .forms .label_chain {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.main .forms .label_chain label {
+  width: 90px;
+}
+
+.main {
+  font-family: "mulish", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #33383D , #1C1D20);
+}

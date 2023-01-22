@@ -2,20 +2,45 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/inputs";
-// import { useNavigate } from "react-router-dom";
-import UserServices from "../../Services/Service";
+import { useNavigate, NavLink } from "react-router-dom";
+import Service from "../../Services/Service";
+import {
+  validateEmail,
+  validatePass,
+  validateName,
+  validateCity,
+  validateConfirm,
+  validateLastName,
+  validateBirthday,
+  validateCountry,
+} from "../../Utils/Validate";
+
+const service = new Service();
 
 const Register = () => {
   const [form, setForm] = useState([]);
   const [loading, setLoading] = useState([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const validate = () => {
+    return (
+      validateEmail(form.email) &&
+      validatePass(form.password) &&
+      validateName(form.name) &&
+      validateCity(form.city) &&
+      validateConfirm(form.password, form.confirmPassword) &&
+      validateLastName(form.lastname) &&
+      validateBirthday(form.birthdate) &&
+      validateCountry(form.country)
+    );
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
       setLoading(true);
-      const { data } = await UserServices.register({
+      const { data } = await service.registrar({
         name: form.name,
         lastname: form.lastname,
         birthdate: form.birthdate,
@@ -25,13 +50,14 @@ const Register = () => {
         password: form.password,
       });
       if (data) {
-        const responseLogin = await UserServices.login({
+        const responseLogin = await service.login({
           name: form.name,
           email: form.email,
           password: form.password,
         });
         if (responseLogin === true) {
           alert("funcionou");
+          navigate("*");
         }
       }
       setLoading(false);
@@ -40,8 +66,8 @@ const Register = () => {
     }
   };
 
-  const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
@@ -123,11 +149,15 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" onClick={handleSubmit} disabled={loading === true}>Register Now</button>
-        {/* <NavLink to="login">Sing in</NavLink> */}
-        <div>
-          <a href="./">link</a>
-        </div>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={loading === true || !validate}
+        >
+          Register Now
+        </button>
+        <NavLink to="*">Sing in</NavLink>
+        
       </div>
       <Imagens />
     </div>
