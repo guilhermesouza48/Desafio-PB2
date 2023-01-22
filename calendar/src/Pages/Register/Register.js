@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
-import {Imagens} from "../../components/imagens/img";
-// import React, { useState } from "react";
+import { Imagens } from "../../components/imagens/img";
+import Input from "../../components/Inputs/inputs";
+
+// import { NavLink } from 'react-router-dom'
 // import { Link } from "react-router-dom";
 // import axios from "axios";
 // import { useForm } from "react-hook-form";
 // import { yupResolver } from "@hookform/resolvers/yup";
 
-
 const Register = () => {
-    // const [name, setName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("");
+  // const [loading, setLoading] = useState()
+  const [form, setForm] = useState([]);
+  // const navigate = useNavigate()
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    // } 
-
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  // }
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
   return (
     <div className="main">
@@ -28,39 +34,84 @@ const Register = () => {
         </div>
         <div className="label_chain">
           <label>first name </label>
-          <input type="text" placeholder="Your first name" />
+          <Input
+            name="name"
+            type="text"
+            placeholder="Your first name"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>last name</label>
-          <input placeholder="Your last name" />
+          <Input
+            name="lastname"
+            type="text"
+            placeholder="Your last name"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>birth date</label>
-          <input placeholder="YMM/DD/YYYY" />
+          <Input
+            name="birthdate"
+            type="text"
+            placeholder="MM/DD/YYYY"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>Country</label>
-          <input placeholder="Your Country" />
+          <Input
+            name="country"
+            type="text"
+            placeholder="Your country"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>City </label>
-          <input placeholder="Your City" />
+          <Input
+            name="city"
+            type="text"
+            placeholder="Your city"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>e-mail</label>
-          <input placeholder="Valid e-mail here" />
+          <Input
+            name="email"
+            type="email"
+            placeholder="Valid e-mail here"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>password</label>
-          <input placeholder="Your password" />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Your password"
+            onChange={handleChange}
+          />
         </div>
         <div className="label_chain">
           <label>password</label>
-          <input placeholder="Confirm your password" />
+          <Input
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+            onChange={handleChange}
+          />
         </div>
         <button type="submit">Register Now</button>
+        {/* <NavLink to="login">Sing in</NavLink> */}
+        <div>
+          {" "}
+          <a href="./">link</a>
+        </div>
       </div>
-      <Imagens/>
+      <Imagens />
     </div>
   );
 };

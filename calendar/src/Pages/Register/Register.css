@@ -6,6 +6,12 @@ h1 {
   margin: 0;
 }
 
+p {
+  font-weight: 400;
+  font-size: 16px;
+  color: #E0E0E0;
+}
+
 input::placeholder {
   color: #ffffff;
   font-family: "mulish", sans-serif;
@@ -15,18 +21,9 @@ label {
   font-weight: 400;
   font-size: 16px;
   font-style: normal;
+  color: #E0E0E0;
 }
 
-input {
-  border-radius: 50px;
-  border: 1px #ffffff solid;
-  background-color: #29292c;
-  width: 379px;
-  height: 60px;
-  padding-left: 25px;
-  text-decoration: none;
-  color: #e0e0e0;
-}
 
 .texts {
   display: flex;
