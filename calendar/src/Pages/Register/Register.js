@@ -2,25 +2,44 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/inputs";
-
-// import { NavLink } from 'react-router-dom'
-// import { Link } from "react-router-dom";
-// import axios from "axios";
-// import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
+// import { useNavigate } from "react-router-dom";
+import UserServices from "../../Services/Service";
 
 const Register = () => {
-  // const [loading, setLoading] = useState()
   const [form, setForm] = useState([]);
-  // const navigate = useNavigate()
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState([]);
+  // const navigate = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  // }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      setLoading(true);
+      const { data } = await UserServices.register({
+        name: form.name,
+        lastname: form.lastname,
+        birthdate: form.birthdate,
+        country: form.country,
+        city: form.city,
+        email: form.email,
+        password: form.password,
+      });
+      if (data) {
+        const responseLogin = await UserServices.login({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+        });
+        if (responseLogin === true) {
+          alert("funcionou");
+        }
+      }
+      setLoading(false);
+    } catch (err) {
+      alert("deu ruim" + err);
+    }
+  };
+
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
@@ -104,10 +123,9 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Register Now</button>
+        <button type="submit" onClick={handleSubmit} disabled={loading === true}>Register Now</button>
         {/* <NavLink to="login">Sing in</NavLink> */}
         <div>
-          {" "}
           <a href="./">link</a>
         </div>
       </div>

@@ -8,3 +8,8 @@ input {
   text-decoration: none;
   color: #e0e0e0;
 }
+
+input::placeholder {
+    color: #ffffff;
+    font-family: "mulish", sans-serif;
+  }

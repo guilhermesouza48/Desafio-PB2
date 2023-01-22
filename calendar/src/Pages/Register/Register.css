@@ -12,10 +12,7 @@ p {
   color: #E0E0E0;
 }
 
-input::placeholder {
-  color: #ffffff;
-  font-family: "mulish", sans-serif;
-}
+
 
 label {
   font-weight: 400;

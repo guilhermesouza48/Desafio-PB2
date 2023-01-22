@@ -6,7 +6,7 @@ const Routering = () => {
     return (
         <Router>
             <Routes>
-                <Route path="mainPage" element={<Register />} />
+                <Route path="*" element={<Register />} />
             </Routes>
         </Router>
     )
