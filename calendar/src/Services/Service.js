@@ -21,11 +21,11 @@ export const AuthProvider = ({ children }) => {
   const login = (email, password) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
-    const hasUser = usersStorage();
+    const hasUser = usersStorage?.filter(user => user.email === email);
 
     if (hasUser?.length) {
       if (hasUser[0].email === email && hasUser[0].password === password) {
-        const token = Math.random().toString(20).substring(6);
+        const token = Math.random().toString(36).substring(2);
         localStorage.setItem("user_token", JSON.stringify({ token }));
         setUser({ email, password });
         return;
@@ -50,6 +50,11 @@ export const AuthProvider = ({ children }) => {
 
     let newUser;
 
+    const hasUser = usersStorage?.filter((user) => user.email === email);
+
+    if (hasUser?.length) {
+      return "erros"
+    }
     if (usersStorage) {
       newUser = [
         ...usersStorage,
