@@ -8,7 +8,7 @@ const Routering = () => {
     <Router>
       <Routes>
         <Route path="*" element={<Login />} />
-          <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route extact path="/regist" element={<Register />} />
         <Route extact path="/dash" element={<Dash />} />
       </Routes>

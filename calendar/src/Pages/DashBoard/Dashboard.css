@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Mulish");
 
-.main {
+.mainDash {
   background-color: rgba(255, 255, 255, 0.95);
   display: flex;
   flex-direction: column;
 }
 
-.header {
+.headerDash {
   background-color: #ffffff;
   width: 100%;
   height: 130px;
@@ -15,7 +15,7 @@
   justify-content: space-between;
 }
 
-.text {
+.textDash {
   width: 588px;
   height: 64px;
   background-color: black;
@@ -24,7 +24,7 @@
   border-bottom-right-radius: 15px;
 }
 
-h1 {
+.textDash h1 {
   font-size: 20px;
   font-weight: 700;
   font-size: 20px;
@@ -33,31 +33,31 @@ h1 {
   font-family: "mulish", sans-serif;
 }
 
-.exit {
+.exitDash {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-img {
+.exitDash img {
   margin-top: 5px;
 } 
-h2 {
+.timeDash h2 {
   color: black;
 }
 
-p {
+.timeDash p {
   color: black;
 }
 
-.text p {
+.textDash p {
   font-size: 15px;
   color: #ffffff;
 
   font-family: "mulish", sans-serif;
 }
 
-.time {
+.timeDash {
   width: auto;
   height: auto;
   display: flex;
@@ -65,18 +65,18 @@ p {
   align-items: center;
 }
 
-.time h2 {
+.timeDash h2 {
   margin: 0;
 }
 
-.ActionSection {
+.ActionSectionDash {
   width: 100%;
   height: 130px;
   display: flex;
   align-items: center;
 }
 
-.Board {
+.BoardDash {
   width: 100%;
   height: 950px;
 }

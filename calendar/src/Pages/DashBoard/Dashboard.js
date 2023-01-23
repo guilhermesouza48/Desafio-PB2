@@ -4,8 +4,6 @@ import Logo from "./compass.png";
 import icon from "./icon.png";
 import { Link } from "react-router-dom";
 
-
-
 const Dash = () => {
   const relogio = new Date();
   const hora = relogio.getHours();
@@ -29,13 +27,13 @@ const Dash = () => {
   ];
 
   return (
-    <div className="main">
-      <header className="header">
-        <div className="text">
+    <div className="mainDash">
+      <header className="headerDash">
+        <div className="textDash">
           <h1>Weekly Planner</h1>
           <p>Use this planner to organize your daily issues.</p>
         </div>
-        <div className="time">
+        <div className="timeDash">
           <h2>
             {hora}:{minuto}
           </h2>
@@ -44,16 +42,16 @@ const Dash = () => {
           </p>
         </div>
         <div></div>
-        <div className="exit">
+        <div className="exitDash">
           <img id="logoimg" src={Logo} alt="Logo compass" />
           <img id="icon" src={icon} alt="Icon" />
           <Link to="/">Logout</Link>
         </div>
       </header>
-      <div className="ActionSection">
+      <div className="ActionSectionDash">
         <div></div>
       </div>
-      <div className="Board"></div>
+      <div className="BoardDash"></div>
     </div>
   );
 };
