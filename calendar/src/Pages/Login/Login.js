@@ -15,20 +15,19 @@ const Login = () => {
 
   const handleLogin = () => {
     if (!email && !password) {
-      setError ("Wow, invalid username or password.Please, try again!")
+      setError("Wow, invalid username or password.Please, try again!");
       return;
-    } 
+    }
 
-    const res = login( email, password)
+    const res = login(email, password);
 
     if (res) {
-      setError(res)
+      setError(res);
       return;
-    } 
+    }
 
-    navigate("/dash")
+    navigate("/regist");
   };
-
 
   return (
     <div className="main">
@@ -42,7 +41,7 @@ const Login = () => {
             value={email}
             type="text"
             placeholder="user name"
-            onChange={ (e) => [setEmail(e.target.value), setError("")]}
+            onChange={(e) => [setEmail(e.target.value), setError("")]}
           />
         </div>
 
@@ -51,21 +50,16 @@ const Login = () => {
             value={password}
             type="password"
             placeholder="password"
-            onChange={ (e) => [setPassword(e.target.value)]}
+            onChange={(e) => [setPassword(e.target.value)]}
           />
         </div>
 
-        <div className="label_chain">
-          {error}
-        </div>
+        <div className="label_chain">{error}</div>
 
-        <button
-          type="button"
-          onClick={handleLogin}
-        >
+        <button type="button" onClick={handleLogin}>
           Log in
         </button>
-        <Link to="regist">Register</Link>
+        <Link to="/regist">Register</Link>
       </div>
       <Imagens />
     </div>

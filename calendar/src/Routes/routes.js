@@ -3,15 +3,14 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Dash from "../Pages/DashBoard/Dashboard";
 
-
-
 const Routering = () => {
   return (
     <Router>
       <Routes>
         <Route path="*" element={<Login />} />
-        <Route path="regist" element={<Register />} />
-        <Route path="dash" element={<Dash />} />
+          <Route path="/" element={<Login />} />
+        <Route extact path="/regist" element={<Register />} />
+        <Route extact path="/dash" element={<Dash />} />
       </Routes>
     </Router>
   );
