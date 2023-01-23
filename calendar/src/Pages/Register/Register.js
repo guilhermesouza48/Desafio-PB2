@@ -19,10 +19,10 @@ const Register = () => {
       !birthdate |
       !lastName
     ) {
-      setError("Preencha todos os campos");
+      setError("Fill in all fields");
       return;
     } else if (password !== confirmPassword) {
-      setError("não são iguais");
+      setError("different passwords");
       return;
     }
 
@@ -40,8 +40,6 @@ const Register = () => {
       setError(res);
       return;
     }
-
-    alert("Usuário cadatrado com sucesso!");
     navigate("/");
   };
   const [name, setName] = useState("");

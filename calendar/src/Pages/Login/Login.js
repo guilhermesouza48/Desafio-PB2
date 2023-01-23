@@ -54,12 +54,12 @@ const Login = () => {
           />
         </div>
 
-        <div className="label_chain">{error}</div>
+        <div className="errorLogin">{error}</div>
 
         <button type="button" onClick={handleLogin}>
           Log in
         </button>
-        <Link to="/regist">Register</Link>
+        <Link to="/regist" className="link">Register</Link>
       </div>
       <Imagens />
     </div>

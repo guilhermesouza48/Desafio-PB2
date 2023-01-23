@@ -12,6 +12,16 @@ p {
   color: #E0E0E0;
 }
 
+.link{
+  color: white;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.errorLogin {
+  color: #e9b425;
+  font-size: 14px;
+}
 
 
 label {
