@@ -31,14 +31,18 @@ label {
   color: #E0E0E0;
 }
 
+.formsLogin {
+  display: flex;
+}
 
-.texts {
+
+.textsLogin {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
   width: 27vw;
-  margin-bottom: 40px;
+  margin-bottom: 200px;
 }
 
 button {
@@ -53,11 +57,10 @@ button {
   font-style: bold;
   font-size: 32px;
   font-weight: 700;
-  margin-top: 20px;
 }
 
 
-.main .forms {
+.mainLogin .formsLogin {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -65,17 +68,17 @@ button {
   margin-bottom: 40px;
 }
 
-.main .forms .label_chain {
+.mainLogin .formsLogin .label_chain {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.main .forms .label_chain label {
+.mainLogin .formsLogin .label_chain label {
   width: 90px;
 }
 
-.main {
+.mainLogin {
   font-family: "mulish", sans-serif;
   height: 100vh;
   display: flex;

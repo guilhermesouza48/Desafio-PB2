@@ -46,6 +46,11 @@ button {
   margin-top: 20px;
 }
 
+.linkLogin {
+  color: white;
+  font-weight: 600;
+  margin-top: 10px;
+}
 
 .main .forms {
   width: 100%;

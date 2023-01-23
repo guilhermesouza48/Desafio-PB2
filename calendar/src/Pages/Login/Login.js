@@ -30,9 +30,9 @@ const Login = () => {
   };
 
   return (
-    <div className="main">
-      <div className="forms">
-        <div className="texts">
+    <div className="mainLogin">
+      <div className="formsLogin">
+        <div className="textsLogin">
           <h1>Welcome,</h1>
           <p>To continue browsing safely, log in to the network.</p>
         </div>
@@ -56,6 +56,7 @@ const Login = () => {
 
         <div className="errorLogin">{error}</div>
 
+       
         <button type="button" onClick={handleLogin}>
           Log in
         </button>

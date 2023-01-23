@@ -136,7 +136,7 @@ const Register = () => {
         <button type="button" onClick={handleRegister}>
           Register Now
         </button>
-        <Link to="/">Sing in</Link>
+        <Link to="/" className="linkLogin">Sing in</Link>
       </div>
       <Imagens />
     </div>
