@@ -1,39 +1,79 @@
-import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 
-export default class UserServices {
-  constructor() {
-    this.axios = axios.create({
-      url: '/calendar/src/Pages/Login'
-    })
-  }
+export const AuthContext = createContext({});
 
-  async login(dados) {
-    const { data } = await this.axios.post("/login", dados);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState();
 
-    if (data) {
-      localStorage.setItem("name", data.user.name)
-      localStorage.setItem("email", data.user.email)
-      localStorage.setItem("token", data.user.token)
+  useEffect(() => {
+    const userToken = localStorage.getItem("user_token");
+    const usersStorage = localStorage.getItem("users_bd");
 
-      return true;
+    if (userToken && usersStorage) {
+      const hasUser = JSON.parse(usersStorage)?.filter(
+        (user) => user.email === JSON.parse(userToken).email
+      );
+
+      if (hasUser) setUser(hasUser[0]);
+    }
+  }, []);
+
+  const login = (email, password) => {
+    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+
+    const hasUser = usersStorage();
+
+    if (hasUser?.length) {
+      if (hasUser[0].email === email && hasUser[0].password === password) {
+        const token = Math.random().toString(20).substring(6);
+        localStorage.setItem("user_token", JSON.stringify({ token }));
+        setUser({ email, password });
+        return;
+      } else {
+        return "ERROR: login incorrect ";
+      }
+    } else {
+      return "ERROR : not register";
+    }
+  };
+
+  const register = (
+    name,
+    password,
+    email,
+    country,
+    city,
+    birthdate,
+    lastname
+  ) => {
+    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+
+    let newUser;
+
+    if (usersStorage) {
+      newUser = [
+        ...usersStorage,
+        { name, password, email, country, city, birthdate, lastname },
+      ];
+    } else {
+      newUser = [{ name, password, email, country, city, birthdate, lastname }];
     }
 
-    return
-  }
+    localStorage.setItem("users_bd", JSON.stringify(newUser));
 
-  async registrar(dados) {
-    return this.axios.post('/user', dados);
-  }
+    return;
+  };
 
-  Autentication() {
-    return localStorage.getItem("token") !== undefined ? true : false;
-  }
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("user_token");
+  };
 
-
-  // logout
-  async logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    localStorage.removeItem("email");
-  }
-}
+  return (
+    <AuthContext.Provider
+      value={{ user, signed: !!user, login, register, logout }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};

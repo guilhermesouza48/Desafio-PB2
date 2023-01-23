@@ -1,10 +1,18 @@
 import React from "react";
+import ".././Register/Register.css"
+import { Imagens } from "../../components/imagens/img";
 
-function Dash () {
-    return (
-        <div>
-            <p>Teste</p>
-        </div>
-)}
+
+const Dash = () => {
+  
+
+
+  return (
+    <div className="main">
+     
+      <Imagens />
+    </div>
+  );
+};
 
 export default Dash;

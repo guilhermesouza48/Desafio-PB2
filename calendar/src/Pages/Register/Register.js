@@ -2,72 +2,57 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/inputs";
-import { useNavigate, NavLink } from "react-router-dom";
-import UserServices from "../../Services/Service";
-import {
-  validateEmail,
-  validatePass,
-  validateName,
-  validateCity,
-  validateConfirm,
-  validateLastName,
-  validateBirthday,
-  validateCountry,
-} from "../../Utils/Validate";
-
-const userServices = new UserServices();
+import { useNavigate, Link } from "react-router-dom";
+import useAuth from "../../Hook/useAuth";
 
 const Register = () => {
-  const [form, setForm] = useState([]);
-  const [loading, setLoading] = useState();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
-  const validate = () => {
-    return (
-      validateEmail(form.email) &&
-      validatePass(form.password) &&
-      validateName(form.name) &&
-      validateCity(form.city) &&
-      validateConfirm(form.password, form.confirmPassword) &&
-      validateLastName(form.lastname) &&
-      validateBirthday(form.birthdate) &&
-      validateCountry(form.country)
-    );
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      setLoading(true);
-      const { data } = await userServices.registrar({
-        name: form.name,
-        lastname: form.lastname,
-        birthdate: form.birthdate,
-        country: form.country,
-        city: form.city,
-        email: form.email,
-        password: form.password,
-      });
-      if (data) {
-        const responseLogin = await userServices.login({
-          email: form.email,
-          password: form.password,
-        });
-        if (responseLogin === true) {
-          alert("funcionou");
-          navigate("*");
-        }
-      }
-      setLoading(false);
-    } catch (err) {
-      alert("deu ruim" + err);
+  const handleRegister = () => {
+    if (
+      !name |
+      !password |
+      !email |
+      !country |
+      !city |
+      !birthdate |
+      !lastName
+    ) {
+      setError("Preencha todos os campos");
+      return;
+    } else if (password !== confirmPassword) {
+      setError("não são iguais");
+      return;
     }
-  };
 
-  const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
+    const res = register(
+      name,
+      password,
+      email,
+      country,
+      city,
+      birthdate,
+      lastName
+    );
+
+    if (res) {
+      setError(res);
+      return;
+    }
+
+    alert("Usuário cadatrado com sucesso!");
+    navigate("/");
   };
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   return (
     <div className="main">
@@ -79,84 +64,81 @@ const Register = () => {
         <div className="label_chain">
           <label>first name </label>
           <Input
-            name="name"
+            value={name}
             type="text"
             placeholder="Your first name"
-            onChange={handleChange}
+            onChange={(e) => [setName(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>last name</label>
           <Input
-            name="lastname"
+            value={lastName}
             type="text"
             placeholder="Your last name"
-            onChange={handleChange}
+            onChange={(e) => [setLastName(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>birth date</label>
           <Input
-            name="birthdate"
+            value={birthdate}
             type="text"
             placeholder="MM/DD/YYYY"
-            onChange={handleChange}
+            onChange={(e) => [setBirthdate(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>Country</label>
           <Input
-            name="country"
+            value={country}
             type="text"
             placeholder="Your country"
-            onChange={handleChange}
+            onChange={(e) => [setCountry(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>City </label>
           <Input
-            name="city"
+            value={city}
             type="text"
             placeholder="Your city"
-            onChange={handleChange}
+            onChange={(e) => [setCity(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>e-mail</label>
           <Input
-            name="email"
+            value={email}
             type="email"
             placeholder="Valid e-mail here"
-            onChange={handleChange}
+            onChange={(e) => [setEmail(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>password</label>
           <Input
-            name="password"
+            value={password}
             type="password"
             placeholder="Your password"
-            onChange={handleChange}
+            onChange={(e) => [setPassword(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>password</label>
           <Input
-            name="confirmPassword"
+            value={confirmPassword}
             type="password"
             placeholder="Confirm your password"
-            onChange={handleChange}
+            onChange={(e) => [setConfirmPassword(e.target.value, setError(""))]}
           />
         </div>
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          disabled={loading === true || !validate()}
-        >
+        <div>{error}</div>
+
+        <button type="button" onClick={handleRegister}>
           Register Now
         </button>
-        <NavLink to="*">Sing in</NavLink>
-        
+        <Link to="*">Sing in</Link>
       </div>
       <Imagens />
     </div>

@@ -2,52 +2,33 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/inputs";
-import { useNavigate, NavLink } from "react-router-dom";
-import UserServices from "../../Services/Service";
-import {
-  validateEmail,
-  validatePass,
-  validateName,
-  validateLastName,
-} from "../../Utils/Validate";
-
-const userServices = new UserServices();
+import { useNavigate, Link } from "react-router-dom";
+import useAuth from "../../Hook/useAuth";
 
 const Login = () => {
-  const [form, setForm] = useState([]);
-  const [loading, setLoading] = useState();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const validate = () => {
-    return (
-      validateEmail(form.email) &&
-      validatePass(form.password) &&
-      validateName(form.name) &&
-      validateLastName(form.lastname)
-    );
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = () => {
+    if (!email && !password) {
+      setError ("Wow, invalid username or password.Please, try again!")
+      return;
+    } 
+
+    const res = login( email, password)
+
+    if (res) {
+      setError(res)
+      return;
+    } 
+
+    navigate("/dash")
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      setLoading(true)
-      const response = await userServices.login(form);
-      console.log("response do login", response);
-
-      if (response === true) {
-        alert("Sucessfully logged in");
-        navigate("/regist");
-      }
-      setLoading(false);
-    } catch (err) {
-      alert("deu ruim" + err);
-    }
-  };
-
-  const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  };
 
   return (
     <div className="main">
@@ -58,30 +39,33 @@ const Login = () => {
         </div>
         <div className="label_chain">
           <Input
-            name="name"
+            value={email}
             type="text"
             placeholder="user name"
-            onChange={handleChange}
+            onChange={ (e) => [setEmail(e.target.value), setError("")]}
           />
         </div>
 
         <div className="label_chain">
           <Input
-            name="password"
+            value={password}
             type="password"
             placeholder="password"
-            onChange={handleChange}
+            onChange={ (e) => [setPassword(e.target.value)]}
           />
         </div>
 
+        <div className="label_chain">
+          {error}
+        </div>
+
         <button
-          type="submit"
-          onClick={handleSubmit}
-          disabled={loading === true || !validate}
+          type="button"
+          onClick={handleLogin}
         >
           Log in
         </button>
-        <NavLink to="regist">Register</NavLink>
+        <Link to="regist">Register</Link>
       </div>
       <Imagens />
     </div>
