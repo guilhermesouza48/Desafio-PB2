@@ -3,7 +3,7 @@ import "./Login.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/inputs";
 import { useNavigate, NavLink } from "react-router-dom";
-import Service from "../../Services/Service";
+import UserServices from "../../Services/Service";
 import {
   validateEmail,
   validatePass,
@@ -11,11 +11,11 @@ import {
   validateLastName,
 } from "../../Utils/Validate";
 
-const service = new Service();
+const userServices = new UserServices();
 
 const Login = () => {
   const [form, setForm] = useState([]);
-  const [loading, setLoading] = useState([]);
+  const [loading, setLoading] = useState();
   const navigate = useNavigate();
 
   const validate = () => {
@@ -27,20 +27,17 @@ const Login = () => {
     );
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
-      setLoading(true);
-      const response = await service.login(form);
-      console.log("respons do login", response);
+      setLoading(true)
+      const response = await userServices.login(form);
+      console.log("response do login", response);
 
       if (response === true) {
         alert("Sucessfully logged in");
-        navigate("/Register");
-      }
-      if (response === true) {
-        alert("funcionou");
+        navigate("/regist");
       }
       setLoading(false);
     } catch (err) {
@@ -48,8 +45,8 @@ const Login = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
 
   return (

@@ -1,34 +1,36 @@
 import axios from "axios";
 
-export default class Service {
+export default class UserServices {
   constructor() {
     this.axios = axios.create({
-      baseURL: process.env.REACT_APP_API_LOGIN + "/api",
-    });
+      url: '/calendar/src/Pages/Login'
+    })
   }
 
   async login(dados) {
-    const { data } = await this.axios.post("/Login", dados);
+    const { data } = await this.axios.post("/login", dados);
 
     if (data) {
-      localStorage.setItem("name", data.user.name);
-      localStorage.setItem("email", data.user.email);
-      localStorage.setItem("token", data.token.token);
+      localStorage.setItem("name", data.user.name)
+      localStorage.setItem("email", data.user.email)
+      localStorage.setItem("token", data.user.token)
 
       return true;
     }
 
-    return;
+    return
   }
 
   async registrar(dados) {
-    return this.axios.post("/user", dados);
+    return this.axios.post('/user', dados);
   }
 
   Autentication() {
     return localStorage.getItem("token") !== undefined ? true : false;
   }
 
+
+  // logout
   async logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("name");

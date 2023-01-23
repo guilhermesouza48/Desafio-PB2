@@ -3,7 +3,7 @@ import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/inputs";
 import { useNavigate, NavLink } from "react-router-dom";
-import Service from "../../Services/Service";
+import UserServices from "../../Services/Service";
 import {
   validateEmail,
   validatePass,
@@ -15,11 +15,11 @@ import {
   validateCountry,
 } from "../../Utils/Validate";
 
-const service = new Service();
+const userServices = new UserServices();
 
 const Register = () => {
   const [form, setForm] = useState([]);
-  const [loading, setLoading] = useState([]);
+  const [loading, setLoading] = useState();
   const navigate = useNavigate();
 
   const validate = () => {
@@ -35,12 +35,12 @@ const Register = () => {
     );
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
       setLoading(true);
-      const { data } = await service.registrar({
+      const { data } = await userServices.registrar({
         name: form.name,
         lastname: form.lastname,
         birthdate: form.birthdate,
@@ -50,8 +50,7 @@ const Register = () => {
         password: form.password,
       });
       if (data) {
-        const responseLogin = await service.login({
-          name: form.name,
+        const responseLogin = await userServices.login({
           email: form.email,
           password: form.password,
         });
@@ -66,8 +65,8 @@ const Register = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
 
   return (
@@ -152,7 +151,7 @@ const Register = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          disabled={loading === true || !validate}
+          disabled={loading === true || !validate()}
         >
           Register Now
         </button>
