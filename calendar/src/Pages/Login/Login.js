@@ -26,7 +26,7 @@ const Login = () => {
       return;
     }
 
-    navigate("/dash");
+    navigate("/regist");
   };
 
   return (

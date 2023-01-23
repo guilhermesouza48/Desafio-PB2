@@ -7,11 +7,12 @@
 }
 
 .header {
-  background-color: aqua;
+  background-color: #ffffff;
   width: 100%;
   height: 130px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .text {
@@ -32,16 +33,43 @@ h1 {
   font-family: "mulish", sans-serif;
 }
 
+.exit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+  margin-top: 5px;
+} 
+h2 {
+  color: black;
+}
+
 p {
+  color: black;
+}
+
+.text p {
   font-size: 15px;
   color: #ffffff;
 
   font-family: "mulish", sans-serif;
 }
 
+.time {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time h2 {
+  margin: 0;
+}
+
 .ActionSection {
-  background-color: aqua;
-  overflow: hidden;
   width: 100%;
   height: 130px;
   display: flex;
