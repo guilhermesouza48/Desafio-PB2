@@ -1,6 +1,8 @@
+
+
 @import url("https://fonts.googleapis.com/css?family=Mulish");
 
-h1 {
+.h1 {
   font-weight: 400;
   font-size: 60px;
   margin: 0;
@@ -8,7 +10,7 @@ h1 {
 
 p {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 40px;
   color: #E0E0E0;
 }
 
@@ -28,7 +30,7 @@ label {
   font-weight: 400;
   font-size: 16px;
   font-style: normal;
-  color: #E0E0E0;
+  color: #ef1010;
 }
 
 .formsLogin {
@@ -45,19 +47,6 @@ label {
   margin-bottom: 200px;
 }
 
-button {
-  background-image: linear-gradient(to bottom, #ff2d04, #c13216);
-  border: 2px solid;
-  border-image: linear-gradient(to bottom, #ff2d04, #c13216);
-  border-radius: 50px;
-  width: 471px;
-  height: 67px;
-  color: #ffffff;
-  font-family: "mulish", sans-serif;
-  font-style: bold;
-  font-size: 32px;
-  font-weight: 700;
-}
 
 
 .mainLogin .formsLogin {

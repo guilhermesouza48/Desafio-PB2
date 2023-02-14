@@ -5,6 +5,8 @@ import Input from "../../components/Inputs/inputs";
 import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 
+import { Buttons } from "../../components/Buttons/Buttons";
+
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -56,11 +58,15 @@ const Login = () => {
 
         <div className="errorLogin">{error}</div>
 
-       
-        <button type="button" onClick={handleLogin}>
-          Log in
-        </button>
-        <Link to="/regist" className="link">Register</Link>
+        <Buttons>
+          <Link to="/dash" onClick={handleLogin}>
+            Login
+          </Link>
+        </Buttons>
+
+        <Link to="/regist" className="link">
+          Register
+        </Link>
       </div>
       <Imagens />
     </div>
