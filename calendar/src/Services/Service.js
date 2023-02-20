@@ -37,37 +37,37 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = (
-    name,
-    password,
-    email,
-    country,
-    city,
-    birthdate,
-    lastname
-  ) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+  // const register =  (
+  //   firstName,
+  //   password,
+  //   email,
+  //   country,
+  //   city,
+  //   birthdate,
+  //   lastname
+  // ) => {
+  //   const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
-    let newUser;
+  //   let newUser;
 
-    const hasUser = usersStorage?.filter((user) => user.email === email);
+  //   const hasUser = usersStorage?.filter((user) => user.email === email);
 
-    if (hasUser?.length) {
-      return "erros"
-    }
-    if (usersStorage) {
-      newUser = [
-        ...usersStorage,
-        { name, password, email, country, city, birthdate, lastname },
-      ];
-    } else {
-      newUser = [{ name, password, email, country, city, birthdate, lastname }];
-    }
+  //   if (hasUser?.length) {
+  //     return "erros"
+  //   }
+  //   if (usersStorage) {
+  //     newUser = [
+  //       ...usersStorage,
+  //       { name, password, email, country, city, birthdate, lastname },
+  //     ];
+  //   } else {
+  //     newUser = [{ name, password, email, country, city, birthdate, lastname }];
+  //   }
 
-    localStorage.setItem("users_bd", JSON.stringify(newUser));
+  //   localStorage.setItem("users_bd", JSON.stringify(newUser));
 
-    return;
-  };
+  //   return;
+  // };
 
   const logout = () => {
     setUser(null);
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, login, register, logout }}
+      value={{ user, signed: !!user, login, logout }}
     >
       {children}
     </AuthContext.Provider>

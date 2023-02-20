@@ -1,5 +1,6 @@
 import React from 'react';
-import "./inputstyle.css"
+import { Inputs } from './InputStyle';
+
 
 const Input = ({
     value,
@@ -8,7 +9,7 @@ const Input = ({
     onChange,
 }) => {
     return (
-        <input
+        <Inputs
             value={value}
             type={type}
             placeholder={placeholder}

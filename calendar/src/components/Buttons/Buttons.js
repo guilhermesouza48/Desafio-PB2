@@ -12,8 +12,14 @@ export const Buttons = styled.button`
   font-size: 32px;
   font-weight: 700;
 
-  a:-webkit-any-link   {
+  a:-webkit-any-link {
     text-decoration: none;
     color: #ffffff;
   }
+`;
+
+export const LinkButton = styled.link`
+  color: white;
+  font-weight: 600;
+  margin-top: 10px;
 `;

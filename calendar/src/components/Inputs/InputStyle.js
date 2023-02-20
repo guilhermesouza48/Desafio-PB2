@@ -1,4 +1,7 @@
-input {
+import styled from "styled-components";
+
+export const Inputs = styled.input`
+
   border-radius: 50px;
   border: 1px #ffffff solid;
   background-color: #29292c;
@@ -7,9 +10,10 @@ input {
   padding-left: 25px;
   text-decoration: none;
   color: #e0e0e0;
-}
 
-input::placeholder {
+  ::placeholder {
     color: #ffffff;
     font-family: "mulish", sans-serif;
   }
+
+`;

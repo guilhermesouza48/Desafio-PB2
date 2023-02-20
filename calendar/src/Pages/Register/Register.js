@@ -1,58 +1,64 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
-import Input from "../../components/Inputs/inputs";
+import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
-import useAuth from "../../Hook/useAuth";
+// import useAuth from "../../Hook/useAuth";
+// import axios from "axios";
+
+
 
 const Register = () => {
-  const { register } = useAuth();
+  // const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (
-      !name |
-      !password |
-      !email |
-      !country |
-      !city |
-      !birthdate |
-      !lastName
-    ) {
-      setError("Fill in all fields");
-      return;
-    } else if (password !== confirmPassword) {
-      setError("different passwords");
-      return;
-    }
+  
 
-    const res = register(
-      name,
-      password,
-      email,
-      country,
-      city,
-      birthdate,
-      lastName
-    );
+  const handleRegister = data => {
+    console.log(data)
+    
 
-    if (res) {
-      setError(res);
-      return;
-    }
-    navigate("/");
+
+    // if (
+    //   !name |
+    //   !password |
+    //   !email |
+    //   !country |
+    //   !city |
+    //   !birthdate |
+    //   !lastName
+    // ) {
+    //   setError("Fill in all fields");
+    //   return;
+    // } else if (this.password !== this.confirmPassword) {
+    //   setError("different passwords");
+    //   return;
+    // }
+
+    // const res = register(
+    //   name,
+    //   password,
+    //   email,
+    //   country,
+    //   city,
+    //   birthdate,
+    //   lastName
+    // );
+
+    // if (res) {
+    //   setError(res);
+    //   return;
+    // }
+    navigate("/")
   };
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
+  
   const [error, setError] = useState("");
+  
 
   return (
+
+    
     <div className="main">
       <div className="forms">
         <div className="texts">
@@ -62,81 +68,83 @@ const Register = () => {
         <div className="label_chain">
           <label>first name </label>
           <Input
-            value={name}
+            value={this.firstName}
             type="text"
             placeholder="Your first name"
-            onChange={(e) => [setName(e.target.value, setError(""))]}
+            onChange={(e) => [this.name(e.target.value, setError(""))]} // api
           />
         </div>
         <div className="label_chain">
           <label>last name</label>
           <Input
-            value={lastName}
+            value={this.lastName}
             type="text"
             placeholder="Your last name"
-            onChange={(e) => [setLastName(e.target.value, setError(""))]}
+            // onChange={(e) => [setLastName(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>birth date</label>
           <Input
-            value={birthdate}
+            value={this.birthDate}
             type="text"
             placeholder="MM/DD/YYYY"
-            onChange={(e) => [setBirthdate(e.target.value, setError(""))]}
+            // onChange={(e) => [setBirthdate(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>Country</label>
           <Input
-            value={country}
+            value={this.country}
             type="text"
             placeholder="Your country"
-            onChange={(e) => [setCountry(e.target.value, setError(""))]}
+            onChange={(e) => [this.country(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>City </label>
           <Input
-            value={city}
+            value={this.city}
             type="text"
             placeholder="Your city"
-            onChange={(e) => [setCity(e.target.value, setError(""))]}
+            // onChange={(e) => [setCity(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>e-mail</label>
           <Input
-            value={email}
+            value={this.email}
             type="email"
             placeholder="Valid e-mail here"
-            onChange={(e) => [setEmail(e.target.value, setError(""))]}
+            // onChange={(e) => [setEmail(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>password</label>
           <Input
-            value={password}
+            value={this.password}
             type="password"
             placeholder="Your password"
-            onChange={(e) => [setPassword(e.target.value, setError(""))]}
+            // onChange={(e) => [setPassword(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>password</label>
           <Input
-            value={confirmPassword}
+            value={this.confirmPassword}
             type="password"
             placeholder="Confirm your password"
-            onChange={(e) => [setConfirmPassword(e.target.value, setError(""))]}
+            // onChange={(e) => [setConfirmPassword(e.target.value, setError(""))]}
           />
         </div>
-        <div>{error}</div>
+        {/* <div>{error}</div> */}
 
         <button type="button" onClick={handleRegister}>
           Register Now
         </button>
-        <Link to="/" className="linkLogin">Sing in</Link>
+        <Link to="/" className="linkLogin">
+          Sing in
+        </Link>
       </div>
       <Imagens />
     </div>

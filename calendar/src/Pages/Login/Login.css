@@ -2,18 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css?family=Mulish");
 
-.h1 {
-  font-weight: 400;
-  font-size: 60px;
-  margin: 0;
-}
-
-p {
-  font-weight: 400;
-  font-size: 40px;
-  color: #E0E0E0;
-}
-
 .link{
   color: white;
   font-weight: 600;
@@ -26,17 +14,9 @@ p {
 }
 
 
-label {
-  font-weight: 400;
-  font-size: 16px;
-  font-style: normal;
-  color: #ef1010;
-}
-
 .formsLogin {
   display: flex;
 }
-
 
 .textsLogin {
   display: flex;
@@ -44,10 +24,8 @@ label {
   justify-content: flex-start;
   flex-direction: column;
   width: 27vw;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 }
-
-
 
 .mainLogin .formsLogin {
   width: 100%;
@@ -57,24 +35,10 @@ label {
   margin-bottom: 40px;
 }
 
-.mainLogin .formsLogin .label_chain {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.mainLogin .formsLogin .label_chain label {
-  width: 90px;
-}
-
 .mainLogin {
   font-family: "mulish", sans-serif;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-body {
-    background-image: linear-gradient(to bottom, #33383D , #1C1D20);
 }

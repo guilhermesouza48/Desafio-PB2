@@ -3,6 +3,9 @@ import "./Dashboard.css";
 import Logo from "./compass.png";
 import icon from "./icon.png";
 import { Link } from "react-router-dom";
+import { Inputs } from "../../components/Inputs/Inputs";
+
+
 
 const Dash = () => {
   const relogio = new Date();
@@ -10,6 +13,7 @@ const Dash = () => {
   const minuto = relogio.getMinutes();
   const dia = relogio.getDate();
   const ano = relogio.getFullYear();
+  
 
   const monthNames = [
     "January",
@@ -41,17 +45,28 @@ const Dash = () => {
             {monthNames[relogio.getMonth()]} {dia}th, {ano}
           </p>
         </div>
-        <div></div>
+        <div>
+          <p></p>
+        </div>
         <div className="exitDash">
           <img id="logoimg" src={Logo} alt="Logo compass" />
           <img id="icon" src={icon} alt="Icon" />
           <Link to="/">Logout</Link>
         </div>
       </header>
+
+
       <div className="ActionSectionDash">
-        <div></div>
+        <div>
+          <input type={Text}>
+          
+          </input>
+          </div> 
       </div>
-      <div className="BoardDash"></div>
+
+      <div className="BoardDash">
+
+      </div>
     </div>
   );
 };

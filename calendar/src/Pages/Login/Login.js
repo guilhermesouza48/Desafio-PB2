@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Imagens } from "../../components/imagens/img";
-import Input from "../../components/Inputs/inputs";
+import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 
+import { Label } from "../../components/Label/Label_Chain";
+
+import { Title, Subtitle } from "../../components/Texts/Texts";
 import { Buttons } from "../../components/Buttons/Buttons";
 
 const Login = () => {
@@ -28,41 +31,39 @@ const Login = () => {
       return;
     }
 
-    navigate("/regist");
+    navigate("/dash");
   };
 
   return (
     <div className="mainLogin">
       <div className="formsLogin">
         <div className="textsLogin">
-          <h1>Welcome,</h1>
-          <p>To continue browsing safely, log in to the network.</p>
+          <Title>Welcome,</Title>
+          <Subtitle>To continue browsing safely, log in to the network.</Subtitle>
         </div>
-        <div className="label_chain">
+        <h2>Login</h2>
+        <Label>
           <Input
             value={email}
             type="text"
             placeholder="user name"
             onChange={(e) => [setEmail(e.target.value), setError("")]}
           />
-        </div>
+        </Label>
 
-        <div className="label_chain">
+        <Label>
           <Input
             value={password}
             type="password"
             placeholder="password"
             onChange={(e) => [setPassword(e.target.value)]}
           />
-        </div>
+        </Label>
 
+        {/* Vai virar Modal */}
         <div className="errorLogin">{error}</div>
 
-        <Buttons>
-          <Link to="/dash" onClick={handleLogin}>
-            Login
-          </Link>
-        </Buttons>
+        <Buttons onClick={handleLogin}>Login</Buttons>
 
         <Link to="/regist" className="link">
           Register

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"; // npm install --save styled-components 
+import { createGlobalStyle } from "styled-components"; // npm install --save styled-components
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -12,6 +12,6 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-`
+`;
 
 export default GlobalStyle;
