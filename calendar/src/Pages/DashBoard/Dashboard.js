@@ -3,9 +3,8 @@ import "./Dashboard.css";
 import Logo from "./compass.png";
 import icon from "./icon.png";
 import { Link } from "react-router-dom";
-import { Inputs } from "../../components/Inputs/Inputs";
-
-
+import InputDashBoard from "../../components/Inputs/InputDash";
+import Selections from "../../components/Selection/Select";
 
 const Dash = () => {
   const relogio = new Date();
@@ -13,7 +12,6 @@ const Dash = () => {
   const minuto = relogio.getMinutes();
   const dia = relogio.getDate();
   const ano = relogio.getFullYear();
-  
 
   const monthNames = [
     "January",
@@ -55,18 +53,21 @@ const Dash = () => {
         </div>
       </header>
 
-
       <div className="ActionSectionDash">
         <div>
-          <input type={Text}>
-          
-          </input>
-          </div> 
+          <InputDashBoard
+            // value={value}
+            // type={type}
+            placeholder="Task or issue"
+            // onChange={onChange}
+          />
+         
+        </div>
+
+        <Selections/>
       </div>
 
-      <div className="BoardDash">
-
-      </div>
+      <div className="BoardDash"></div>
     </div>
   );
 };

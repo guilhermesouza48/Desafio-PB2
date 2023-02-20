@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
@@ -53,7 +53,7 @@ const Register = () => {
   };
 
   
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   
 
   return (
@@ -68,16 +68,16 @@ const Register = () => {
         <div className="label_chain">
           <label>first name </label>
           <Input
-            value={this.firstName}
+            // value={firstName}
             type="text"
             placeholder="Your first name"
-            onChange={(e) => [this.name(e.target.value, setError(""))]} // api
+            // onChange={(e) => [this.name(e.target.value, setError(""))]} // api
           />
         </div>
         <div className="label_chain">
           <label>last name</label>
           <Input
-            value={this.lastName}
+            // value={this.lastName}
             type="text"
             placeholder="Your last name"
             // onChange={(e) => [setLastName(e.target.value, setError(""))]}
@@ -86,7 +86,7 @@ const Register = () => {
         <div className="label_chain">
           <label>birth date</label>
           <Input
-            value={this.birthDate}
+            // value={this.birthDate}
             type="text"
             placeholder="MM/DD/YYYY"
             // onChange={(e) => [setBirthdate(e.target.value, setError(""))]}
@@ -95,16 +95,16 @@ const Register = () => {
         <div className="label_chain">
           <label>Country</label>
           <Input
-            value={this.country}
+            // value={this.country}
             type="text"
             placeholder="Your country"
-            onChange={(e) => [this.country(e.target.value, setError(""))]}
+            // onChange={(e) => [this.country(e.target.value, setError(""))]}
           />
         </div>
         <div className="label_chain">
           <label>City </label>
           <Input
-            value={this.city}
+            // value={this.city}
             type="text"
             placeholder="Your city"
             // onChange={(e) => [setCity(e.target.value, setError(""))]}
@@ -113,7 +113,7 @@ const Register = () => {
         <div className="label_chain">
           <label>e-mail</label>
           <Input
-            value={this.email}
+            // value={this.email}
             type="email"
             placeholder="Valid e-mail here"
             // onChange={(e) => [setEmail(e.target.value, setError(""))]}
@@ -122,7 +122,7 @@ const Register = () => {
         <div className="label_chain">
           <label>password</label>
           <Input
-            value={this.password}
+            // value={this.password}
             type="password"
             placeholder="Your password"
             // onChange={(e) => [setPassword(e.target.value, setError(""))]}
@@ -131,7 +131,7 @@ const Register = () => {
         <div className="label_chain">
           <label>password</label>
           <Input
-            value={this.confirmPassword}
+            // value={this.confirmPassword}
             type="password"
             placeholder="Confirm your password"
             // onChange={(e) => [setConfirmPassword(e.target.value, setError(""))]}
