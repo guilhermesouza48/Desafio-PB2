@@ -3,14 +3,14 @@ import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
-import useAuth from "../../Hook/useAuth";
+// import useAuth from "../../Hook/useAuth";
 import axios from "axios";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
 const Register = () => {
-  const { register } = useAuth();
+  // const { register } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [modalIsopen, setIsOpen] = useState(false);
@@ -31,12 +31,12 @@ const Register = () => {
 
   const handleRegister = (data) => {
     console.log(data);
-    const res = register(user);
+    // const res = register(user);
 
-    if (this.password !== this.confirmPassword) {
-      setError("diferente");
-      return;
-    }
+    // if (this.password !== this.confirmPassword) {
+    //   setError("diferente");
+    //   return;
+    // }
 
     if (res) {
       setError(res);
@@ -147,10 +147,20 @@ const Register = () => {
         <Link to="/" className="linkLogin">
           Sing in
         </Link>
-        <div className="errorLogin">{error}</div>
-        <Modal isOpen={modalIsopen} onRequestClose={handleCloseModal}>
-          <p>ERRO</p>
-        </Modal>
+        {/* <div className="errorLogin">{error}</div> */}
+
+        <div className="modal-container">
+          <Modal
+            isOpen={modalIsopen}
+            onRequestClose={handleCloseModal}
+            className="modal-content"
+            overlayClassName="modal-overlay"
+            contentLabel="example modal"
+          >
+            <span class="close">&times;</span>
+            <p>ERRO</p>
+          </Modal>
+        </div>
       </div>
       <Imagens />
     </div>

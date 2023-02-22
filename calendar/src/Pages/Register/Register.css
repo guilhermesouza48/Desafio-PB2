@@ -9,18 +9,15 @@ h1 {
 p {
   font-weight: 400;
   font-size: 16px;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
-
-
 
 label {
   font-weight: 400;
   font-size: 16px;
   font-style: normal;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
-
 
 .texts {
   display: flex;
@@ -44,6 +41,50 @@ button {
   font-size: 32px;
   font-weight: 700;
   margin-top: 20px;
+}
+
+.modal-content {
+  
+background: rgba(255, 234, 196, 0.16);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.4px);
+-webkit-backdrop-filter: blur(3.4px);
+border: 1px solid rgba(255, 234, 196, 1);
+
+  color: wheat;
+  padding: 20px;
+  width: 20%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  bottom: 500;
+}
+
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 162, 0, 0.01);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9px);
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .linkLogin {
@@ -79,5 +120,5 @@ button {
 }
 
 body {
-    background-image: linear-gradient(to bottom, #33383D , #1C1D20);
+  background-image: linear-gradient(to bottom, #33383d, #1c1d20);
 }

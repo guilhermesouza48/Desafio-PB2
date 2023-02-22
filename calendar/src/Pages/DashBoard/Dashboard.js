@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import Logo from "./compass.png";
 import icon from "./icon.png";
 import { Link } from "react-router-dom";
 import InputDashBoard from "../../components/Inputs/InputDash";
 import Selections from "../../components/Selection/Select";
+import axios from "axios";
 
 const Dash = () => {
   const relogio = new Date();
@@ -14,22 +15,33 @@ const Dash = () => {
   const ano = relogio.getFullYear();
   const [weather, setWeather] = useState();
 
+
   const handleWeather = () => {
-    fetch(
-      `http://api.weatherapi.com/v1/current.json?key=ab4c360a7a424575a55181943231802&q=Franca&lang=pt`
-    )
-      .then((res) => {
-        if (res.ok) return res.json();
-        else {
-          console.log(res);
-        }
+    const userData = localStorage.getItem("user");
+
+    const api = axios.create({
+      baseURL: `http://api.weatherapi.com/v1/current.json?key=ab4c360a7a424575a55181943231802&q=${
+        JSON.parse(userData).user.city
+      }&lang=pt`,
+    });
+
+    api
+      .get()
+      .then((response) => {
+        setWeather(response.data);
       })
-      .then((data) => {
-        // console.log(data);
-        setWeather(data);
-        console.log(weather)
+      .catch((err) => {
+        alert("ERROR: " + err.message);
       });
   };
+
+  // console.log(weather);
+
+  // console.log(weather?.current?.temp_c);
+
+  useEffect(() => {
+    handleWeather();
+  }, []);
 
   const monthNames = [
     "January",
@@ -61,11 +73,13 @@ const Dash = () => {
             {monthNames[relogio.getMonth()]} {dia}th, {ano}
           </p>
         </div>
-          {weather.map(weather.current.condition.text)}
-        <div>
-        
-        </div>
+
+        <div className="timeDash">
+          <h2>{weather?.location?.name} - {weather?.location?.region}</h2>
        
+          <h2>{weather?.current?.temp_c}</h2>
+        </div>
+
         <div className="exitDash">
           <img id="logoimg" src={Logo} alt="Logo compass" />
           <img id="icon" src={icon} alt="Icon" />
@@ -92,3 +106,5 @@ const Dash = () => {
 };
 
 export default Dash;
+
+//guilhermesouzzadejesus@hotmail.com

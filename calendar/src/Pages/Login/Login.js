@@ -3,7 +3,7 @@ import "./Login.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
-import useAuth from "../../Hook/useAuth";
+// import useAuth from "../../Hook/useAuth";
 import axios from "axios";
 
 import { Label } from "../../components/Label/Label_Chain";
@@ -12,7 +12,7 @@ import { Title, Subtitle } from "../../components/Texts/Texts";
 import { Buttons } from "../../components/Buttons/Buttons";
 
 const Login = () => {
-  const { login } = useAuth();
+  // const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -25,12 +25,12 @@ const Login = () => {
       return;
     }
 
-    const res = login(email, password);
+    // const res = login(email, password);
 
-    if (res) {
-      setError(res);
-      return;
-    }
+    // if (res) {
+    //   setError(res);
+    //   return;
+    // }
 
     const api = axios.create({
       baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
@@ -39,6 +39,7 @@ const Login = () => {
     api
       .post("users/sign-in", {email, password})
       .then((response) => {
+        localStorage.setItem('user', JSON.stringify(response.data));
         console.log(response);
         navigate("/dash");
       })
