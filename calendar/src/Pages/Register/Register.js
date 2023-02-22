@@ -1,64 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
-// import useAuth from "../../Hook/useAuth";
-// import axios from "axios";
+import useAuth from "../../Hook/useAuth";
+import axios from "axios";
+import Modal from "react-modal";
 
-
+Modal.setAppElement("#root");
 
 const Register = () => {
-  // const { register } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [modalIsopen, setIsOpen] = useState(false);
 
-  
+  const [user, setUser] = useState({});
 
-  const handleRegister = data => {
-    console.log(data)
-    
-
-
-    // if (
-    //   !name |
-    //   !password |
-    //   !email |
-    //   !country |
-    //   !city |
-    //   !birthdate |
-    //   !lastName
-    // ) {
-    //   setError("Fill in all fields");
-    //   return;
-    // } else if (this.password !== this.confirmPassword) {
-    //   setError("different passwords");
-    //   return;
-    // }
-
-    // const res = register(
-    //   name,
-    //   password,
-    //   email,
-    //   country,
-    //   city,
-    //   birthdate,
-    //   lastName
-    // );
-
-    // if (res) {
-    //   setError(res);
-    //   return;
-    // }
-    navigate("/")
+  const handlechangeValues = (props, value) => {
+    setUser({ ...user, [props]: value });
   };
 
-  
-  // const [error, setError] = useState("");
-  
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsOpen(false);
+  }
+
+  const handleRegister = (data) => {
+    console.log(data);
+    const res = register(user);
+
+    if (this.password !== this.confirmPassword) {
+      setError("diferente");
+      return;
+    }
+
+    if (res) {
+      setError(res);
+      return;
+    }
+
+    const api = axios.create({
+      baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
+    });
+
+    api
+      .post("users/sign-up", user)
+      .then((response) => {
+        console.log(response);
+        navigate("/");
+      })
+      .catch((err) => {
+        // alert("ERROR: " + err.message);
+        handleOpenModal(err.message);
+      });
+  };
 
   return (
-
-    
     <div className="main">
       <div className="forms">
         <div className="texts">
@@ -68,76 +69,77 @@ const Register = () => {
         <div className="label_chain">
           <label>first name </label>
           <Input
-            // value={firstName}
+            value={user.firstName}
             type="text"
             placeholder="Your first name"
-            // onChange={(e) => [this.name(e.target.value, setError(""))]} // api
+            onChange={(e) => handlechangeValues("firstName", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>last name</label>
           <Input
-            // value={this.lastName}
+            value={user.lastName}
             type="text"
             placeholder="Your last name"
-            // onChange={(e) => [setLastName(e.target.value, setError(""))]}
+            onChange={(e) => handlechangeValues("lastName", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>birth date</label>
           <Input
-            // value={this.birthDate}
+            value={user.birthDate}
             type="text"
-            placeholder="MM/DD/YYYY"
-            // onChange={(e) => [setBirthdate(e.target.value, setError(""))]}
+            placeholder="YYYY/MM/DD"
+            onChange={(e) => handlechangeValues("birthDate", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>Country</label>
           <Input
-            // value={this.country}
+            value={user.country}
             type="text"
             placeholder="Your country"
-            // onChange={(e) => [this.country(e.target.value, setError(""))]}
+            onChange={(e) => handlechangeValues("country", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>City </label>
           <Input
-            // value={this.city}
+            value={user.city}
             type="text"
             placeholder="Your city"
-            // onChange={(e) => [setCity(e.target.value, setError(""))]}
+            onChange={(e) => handlechangeValues("city", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>e-mail</label>
           <Input
-            // value={this.email}
+            value={user.email}
             type="email"
             placeholder="Valid e-mail here"
-            // onChange={(e) => [setEmail(e.target.value, setError(""))]}
+            onChange={(e) => handlechangeValues("email", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>password</label>
           <Input
-            // value={this.password}
+            value={user.password}
             type="password"
             placeholder="Your password"
-            // onChange={(e) => [setPassword(e.target.value, setError(""))]}
+            onChange={(e) => handlechangeValues("password", e.target.value)}
           />
         </div>
         <div className="label_chain">
           <label>password</label>
           <Input
-            // value={this.confirmPassword}
+            value={user.confirmPassword}
             type="password"
             placeholder="Confirm your password"
-            // onChange={(e) => [setConfirmPassword(e.target.value, setError(""))]}
+            onChange={(e) =>
+              handlechangeValues("confirmPassword", e.target.value)
+            }
           />
         </div>
-        {/* <div>{error}</div> */}
 
         <button type="button" onClick={handleRegister}>
           Register Now
@@ -145,6 +147,10 @@ const Register = () => {
         <Link to="/" className="linkLogin">
           Sing in
         </Link>
+        <div className="errorLogin">{error}</div>
+        <Modal isOpen={modalIsopen} onRequestClose={handleCloseModal}>
+          <p>ERRO</p>
+        </Modal>
       </div>
       <Imagens />
     </div>

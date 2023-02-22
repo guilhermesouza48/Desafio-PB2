@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Dashboard.css";
 import Logo from "./compass.png";
 import icon from "./icon.png";
@@ -12,6 +12,24 @@ const Dash = () => {
   const minuto = relogio.getMinutes();
   const dia = relogio.getDate();
   const ano = relogio.getFullYear();
+  const [weather, setWeather] = useState();
+
+  const handleWeather = () => {
+    fetch(
+      `http://api.weatherapi.com/v1/current.json?key=ab4c360a7a424575a55181943231802&q=Franca&lang=pt`
+    )
+      .then((res) => {
+        if (res.ok) return res.json();
+        else {
+          console.log(res);
+        }
+      })
+      .then((data) => {
+        // console.log(data);
+        setWeather(data);
+        console.log(weather)
+      });
+  };
 
   const monthNames = [
     "January",
@@ -43,9 +61,11 @@ const Dash = () => {
             {monthNames[relogio.getMonth()]} {dia}th, {ano}
           </p>
         </div>
+          {weather.map(weather.current.condition.text)}
         <div>
-          <p></p>
+        
         </div>
+       
         <div className="exitDash">
           <img id="logoimg" src={Logo} alt="Logo compass" />
           <img id="icon" src={icon} alt="Icon" />
@@ -61,10 +81,9 @@ const Dash = () => {
             placeholder="Task or issue"
             // onChange={onChange}
           />
-         
         </div>
 
-        <Selections/>
+        <Selections />
       </div>
 
       <div className="BoardDash"></div>

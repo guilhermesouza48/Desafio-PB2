@@ -18,6 +18,9 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  
+
+
   const login = (email, password) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 

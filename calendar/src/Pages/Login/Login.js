@@ -4,6 +4,7 @@ import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
+import axios from "axios";
 
 import { Label } from "../../components/Label/Label_Chain";
 
@@ -31,8 +32,24 @@ const Login = () => {
       return;
     }
 
-    navigate("/dash");
+    const api = axios.create({
+      baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
+    });
+
+    api
+      .post("users/sign-in", {email, password})
+      .then((response) => {
+        console.log(response);
+        navigate("/dash");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+   
   };
+
+  
 
   return (
     <div className="mainLogin">

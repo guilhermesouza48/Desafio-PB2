@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.body {
+  background-color: #E5E5E5;
+}
+
 .headerDash {
   background-color: #ffffff;
   width: 100%;
