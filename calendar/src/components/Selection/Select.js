@@ -1,9 +1,11 @@
 import React from "react";
 import { Selectionstyle } from "../Inputs/InputStyle";
 
-const Selections = () => {
+const Selections = ({enteredRef}) => {
   return (
-    <Selectionstyle>
+    <Selectionstyle 
+      ref = {enteredRef}
+    >
       <option value="Monday">Monday</option>
       <option value="Tuesday">Tuesday</option>
       <option value="Wednesday">Wednesday</option>

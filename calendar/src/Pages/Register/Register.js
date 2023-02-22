@@ -12,7 +12,7 @@ Modal.setAppElement("#root");
 const Register = () => {
   // const { register } = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [modalIsopen, setIsOpen] = useState(false);
 
   const [user, setUser] = useState({});
@@ -38,10 +38,10 @@ const Register = () => {
     //   return;
     // }
 
-    if (res) {
-      setError(res);
-      return;
-    }
+    // if (res) {
+    //   setError(res);
+    //   return;
+    // }
 
     const api = axios.create({
       baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
