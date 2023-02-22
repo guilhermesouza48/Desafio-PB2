@@ -17,15 +17,36 @@ const Dash = () => {
   const description = useRef();
   const day = useRef();
   const [card, setCard] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [dayAPI, setDayAPI] = useState("monday");
+
+  const setDay = (day) => {
+    setDayAPI(day);
+    getCard(day);
+  };
 
   const deleteEvent = (id) => {
-    getCard()
-    
-  }
+    getCard(dayAPI);
+    deleteHandler(id);
+  };
 
   const deleteHandler = (id) => {
-    
-  }
+    fetch(`https://latam-challenge-2.deta.dev/api/v1/events/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        return res;
+      })
+      .then((data) => {
+        getCard(dayAPI);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleWeather = () => {
     const userData = localStorage.getItem("user");
@@ -48,7 +69,7 @@ const Dash = () => {
 
   useEffect(() => {
     handleWeather();
-    getCard();
+    getCard(dayAPI);
   }, []);
 
   const monthNames = [
@@ -80,8 +101,9 @@ const Dash = () => {
     addCard(user, token);
   };
 
-  const getCard = () => {
-    fetch(`https://latam-challenge-2.deta.dev/api/v1/events`, {
+  const getCard = (day) => {
+    setLoading(true);
+    fetch(`https://latam-challenge-2.deta.dev/api/v1/events?dayOfWeek=${day}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -94,6 +116,7 @@ const Dash = () => {
       .then((data) => {
         console.log(data);
         setCard(data.events);
+        setLoading(false);
       })
       .catch((error) => console.log(error));
   };
@@ -109,15 +132,32 @@ const Dash = () => {
     })
       .then((res) => {
         return res.json();
-        
       })
       .then((data) => {
-        getCard()
+        getCard(dayAPI);
         console.log(data);
       });
   };
 
- 
+  const deleteAllCards = () => {
+    fetch(
+      `https://latam-challenge-2.deta.dev/api/v1/events?dayOfWeek=${dayAPI}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        getCard(dayAPI);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="mainDash">
@@ -162,24 +202,45 @@ const Dash = () => {
         </div>
 
         <Selections enteredRef={day} />
-        <button onClick={sendDate}>Add</button>
+        <button className="" onClick={sendDate}>
+          Add
+        </button>
+
+        <button className="" onClick={deleteAllCards}>
+          Delete All Cards
+        </button>
       </div>
 
       <div className="BoardDash">
+        <div className="days">
+          <p onClick={() => setDay("monday")}>Monday</p>{" "}
+          <p onClick={() => setDay("tuesday")}>Tuesday</p>{" "}
+          <p onClick={() => setDay("wednesday")}>Wednesday</p>{" "}
+          <p onClick={() => setDay("thursday")}>Thursday</p>{" "}
+          <p onClick={() => setDay("friday")}>Friday</p>{" "}
+          <p onClick={() => setDay("saturday")}>Saturday</p>{" "}
+          <p onClick={() => setDay("sunday")}>Sunday</p>{" "}
+        </div>
+
         {card.map((item) => {
           const timeAPI = item.createdAt.split("T");
           const formatData = timeAPI[1].split(".");
           const timeEvent = formatData[0].split(":");
 
-
           return (
-            <>
-              <p>{item.description}</p>
+            <div className="card-content">
+              {loading ? <p>loading...</p> : ""}
+              <p className="description-content">{item.description}</p>
 
-              <p>{`${timeEvent[0]}h ${timeEvent[1]}m`}</p>
+              <p className="horas-content">{`${timeEvent[0]}h ${timeEvent[1]}m`}</p>
 
-              <button onClick={deleteEvent}>delete</button>
-            </>
+              <button
+                className="delete-event"
+                onClick={() => deleteEvent(item._id)}
+              >
+                delete
+              </button>
+            </div>
           );
         })}
       </div>
@@ -190,4 +251,4 @@ const Dash = () => {
 export default Dash;
 
 //guilhermesouzzadejesus@hotmail.com
-// 123456789
+//123456789

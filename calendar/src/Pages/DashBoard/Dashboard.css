@@ -14,6 +14,11 @@ h2 {
   background-color: #e5e5e5;
 }
 
+.days {
+  display: flex;
+  gap: 8px;
+}
+
 .headerDash {
   background-color: #ffffff;
   width: 100%;
