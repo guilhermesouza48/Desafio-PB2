@@ -3,7 +3,7 @@ import "./Login.css";
 import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
-// import useAuth from "../../Hook/useAuth";
+import useAuth from "../../Hook/useAuth";
 import axios from "axios";
 
 import { Label } from "../../components/Label/Label_Chain";
@@ -12,7 +12,7 @@ import { Title, Subtitle } from "../../components/Texts/Texts";
 import { Buttons } from "../../components/Buttons/Buttons";
 
 const Login = () => {
-  // const { login } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -25,41 +25,52 @@ const Login = () => {
       return;
     }
 
-    // const res = login(email, password);
+    const res = login(email, password);
 
-    // if (res) {
-    //   setError(res);
-    //   return;
-    // }
+    if (res) {
+      setError(res);
+      return;
+    }
 
     const api = axios.create({
       baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
     });
 
     api
-      .post("users/sign-in", {email, password})
+      .post("users/sign-in", { email, password })
       .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem("user", JSON.stringify(response.data));
         console.log(response);
         navigate("/dash");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(function (error) {
+        if (error.response) {
+          // setTitle(error.response.status);
+          // setmensagem(error.response.data.message);
+          // handleOpenModal();
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
       });
-
-   
   };
-
-  
 
   return (
     <div className="mainLogin">
       <div className="formsLogin">
         <div className="textsLogin">
           <Title>Welcome,</Title>
-          <Subtitle>To continue browsing safely, log in to the network.</Subtitle>
+          <Subtitle>
+            To continue browsing safely, log in to the network.
+          </Subtitle>
         </div>
-        <h2>Login</h2>
+
+        <div className="titleLogin">
+          <h2>Login</h2>
+        </div>
+
         <Label>
           <Input
             value={email}
@@ -78,7 +89,6 @@ const Login = () => {
           />
         </Label>
 
-        {/* Vai virar Modal */}
         <div className="errorLogin">{error}</div>
 
         <Buttons onClick={handleLogin}>Login</Buttons>

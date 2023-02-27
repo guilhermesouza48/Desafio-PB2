@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 // import useAuth from "../../Hook/useAuth";
 import axios from "axios";
 import Modal from "react-modal";
+import { Buttons } from "../../components/Buttons/Buttons";
 
 Modal.setAppElement("#root");
 
@@ -14,8 +15,9 @@ const Register = () => {
   const navigate = useNavigate();
   // const [error, setError] = useState("");
   const [modalIsopen, setIsOpen] = useState(false);
-
   const [user, setUser] = useState({});
+  const [title, setTitle] = useState();
+  const [mensagem, setmensagem] = useState();
 
   const handlechangeValues = (props, value) => {
     setUser({ ...user, [props]: value });
@@ -31,17 +33,6 @@ const Register = () => {
 
   const handleRegister = (data) => {
     console.log(data);
-    // const res = register(user);
-
-    // if (this.password !== this.confirmPassword) {
-    //   setError("diferente");
-    //   return;
-    // }
-
-    // if (res) {
-    //   setError(res);
-    //   return;
-    // }
 
     const api = axios.create({
       baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
@@ -50,12 +41,22 @@ const Register = () => {
     api
       .post("users/sign-up", user)
       .then((response) => {
-        console.log(response);
+        alert(response.data);
+        console.log(response.data);
         navigate("/");
       })
-      .catch((err) => {
-        // alert("ERROR: " + err.message);
-        handleOpenModal(err.message);
+      .catch(function (error) {
+        if (error.response) {
+          setTitle(error.response.status);
+          setmensagem(error.response.data.message);
+          handleOpenModal();
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
       });
   };
 
@@ -141,9 +142,9 @@ const Register = () => {
           />
         </div>
 
-        <button type="button" onClick={handleRegister}>
+        <Buttons type="button" onClick={handleRegister}>
           Register Now
-        </button>
+        </Buttons>
         <Link to="/" className="linkLogin">
           Sing in
         </Link>
@@ -157,8 +158,14 @@ const Register = () => {
             overlayClassName="modal-overlay"
             contentLabel="example modal"
           >
-            <span class="close">&times;</span>
-            <p>ERRO</p>
+            <span className="close" onClick={handleCloseModal}>&times;</span>
+            <div className="titleModal">
+              <p>{title}</p>
+            </div>
+            <div className="msgModal">
+              <h1>{mensagem}</h1>
+            </div>
+            
           </Modal>
         </div>
       </div>

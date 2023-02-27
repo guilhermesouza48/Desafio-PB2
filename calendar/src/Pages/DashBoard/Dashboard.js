@@ -163,8 +163,10 @@ const Dash = () => {
     <div className="mainDash">
       <header className="headerDash">
         <div className="textDash">
-          <h1>Weekly Planner</h1>
-          <p>Use this planner to organize your daily issues.</p>
+          <div>
+            <h1>Weekly Planner</h1>
+            <p>Use this planner to organize your daily issues.</p>
+          </div>
         </div>
         <div className="timeDash">
           <h2>
@@ -175,52 +177,73 @@ const Dash = () => {
           </p>
         </div>
 
-        <div className="timeDash">
-          <h2>
+        <div className="weatherLoca">
+          <p>
             {weather?.location?.name} - {weather?.location?.region}
-          </h2>
+          </p>
 
-          <h2>{weather?.current?.temp_c}</h2>
+          <h1>{weather?.current?.temp_c}</h1>
         </div>
 
         <div className="exitDash">
-          <img id="logoimg" src={Logo} alt="Logo compass" />
-          <img id="icon" src={icon} alt="Icon" />
+          <div className="imgDash">
+            <img id="logoimg" src={Logo} alt="Logo compass" />
+            <img id="icon" src={icon} alt="Icon" />
+          </div>
           <Link to="/">Logout</Link>
         </div>
       </header>
 
       <div className="ActionSectionDash">
-        <div>
-          <InputDashBoard
-            // value={value}
-            // type={type}
-            placeholder="Task or issue"
-            // onChange={onChange}
-            enteredRef={description}
-          />
+        <div className="ctn-registerTesk">
+          <div className="inputs-ctn">
+            <div>
+              <InputDashBoard
+                placeholder="Task or issue"
+                enteredRef={description}
+              />
+              <Selections enteredRef={day} />
+            </div>
+          </div>
+
+          <div className="ctn-button">
+            <button className="add-button" onClick={sendDate}>
+              + Add to calendar
+            </button>
+
+            <button className="delete-btn" onClick={deleteAllCards}>
+              - Delete All
+            </button>
+          </div>
         </div>
+      </div>
 
-        <Selections enteredRef={day} />
-        <button className="" onClick={sendDate}>
-          Add
-        </button>
-
-        <button className="" onClick={deleteAllCards}>
-          Delete All Cards
-        </button>
+      <div className="ctn-days">
+        <div className="dayone">
+          <p onClick={() => setDay("monday")}>Monday</p>{" "}
+        </div>
+        <p onClick={() => setDay("tuesday")}>
+          Tuesday
+        </p>{" "}
+        <p  onClick={() => setDay("wednesday")}>
+          Wednesday
+        </p>{" "}
+        <p  onClick={() => setDay("thursday")}>
+          Thursday
+        </p>{" "}
+        <p  onClick={() => setDay("friday")}>
+          Friday
+        </p>{" "}
+        <p  onClick={() => setDay("saturday")}>
+          Saturday
+        </p>{" "}
+        <p  onClick={() => setDay("sunday")}>
+          Sunday
+        </p>{" "}
       </div>
 
       <div className="BoardDash">
-        <div className="days">
-          <p onClick={() => setDay("monday")}>Monday</p>{" "}
-          <p onClick={() => setDay("tuesday")}>Tuesday</p>{" "}
-          <p onClick={() => setDay("wednesday")}>Wednesday</p>{" "}
-          <p onClick={() => setDay("thursday")}>Thursday</p>{" "}
-          <p onClick={() => setDay("friday")}>Friday</p>{" "}
-          <p onClick={() => setDay("saturday")}>Saturday</p>{" "}
-          <p onClick={() => setDay("sunday")}>Sunday</p>{" "}
-        </div>
+        <div className="txt-time">TIME</div>
 
         {card.map((item) => {
           const timeAPI = item.createdAt.split("T");
@@ -228,18 +251,19 @@ const Dash = () => {
           const timeEvent = formatData[0].split(":");
 
           return (
-            <div className="card-content">
+            <div className="main-tesk">
               {loading ? <p>loading...</p> : ""}
-              <p className="description-content">{item.description}</p>
-
-              <p className="horas-content">{`${timeEvent[0]}h ${timeEvent[1]}m`}</p>
-
-              <button
-                className="delete-event"
-                onClick={() => deleteEvent(item._id)}
-              >
-                delete
-              </button>
+              <p className="time">{`${timeEvent[0]}h ${timeEvent[1]}m`}</p>
+              <div className="card-content">
+                {" "}
+                <p className="description-content">{item.description}</p>
+                <button
+                  className="delete-event"
+                  onClick={() => deleteEvent(item._id)}
+                >
+                  delete
+                </button>
+              </div>
             </div>
           );
         })}
