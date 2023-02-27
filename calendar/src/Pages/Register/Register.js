@@ -4,6 +4,7 @@ import { Imagens } from "../../components/imagens/img";
 import Input from "../../components/Inputs/Inputs";
 import { useNavigate, Link } from "react-router-dom";
 // import useAuth from "../../Hook/useAuth";
+import Load from "../../components/Loading/Loading";
 import axios from "axios";
 import Modal from "react-modal";
 import { Buttons } from "../../components/Buttons/Buttons";
@@ -18,6 +19,7 @@ const Register = () => {
   const [user, setUser] = useState({});
   const [title, setTitle] = useState();
   const [mensagem, setmensagem] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handlechangeValues = (props, value) => {
     setUser({ ...user, [props]: value });
@@ -33,6 +35,7 @@ const Register = () => {
 
   const handleRegister = (data) => {
     console.log(data);
+    setLoading(true);
 
     const api = axios.create({
       baseURL: "https://latam-challenge-2.deta.dev/api/v1/",
@@ -50,13 +53,16 @@ const Register = () => {
           setTitle(error.response.status);
           setmensagem(error.response.data.message);
           handleOpenModal();
+          setLoading(false);
         } else if (error.request) {
           console.log(error.request);
+          setLoading(false);
         } else {
-          // Something happened in setting up the request that triggered an Error
+          setLoading(false);
           console.log("Error", error.message);
         }
         console.log(error.config);
+        setLoading(false);
       });
   };
 
@@ -142,6 +148,8 @@ const Register = () => {
           />
         </div>
 
+        {loading ? <Load /> : ""}
+
         <Buttons type="button" onClick={handleRegister}>
           Register Now
         </Buttons>
@@ -167,6 +175,8 @@ const Register = () => {
             </div>
             
           </Modal>
+
+         
         </div>
       </div>
       <Imagens />

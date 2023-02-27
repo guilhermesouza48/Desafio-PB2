@@ -12,6 +12,7 @@ export const Buttons = styled.button`
   font-size: 32px;
   font-weight: 700;
   color: white;
+  cursor: pointer;
 
   a:-webkit-any-link {
     text-decoration: none;

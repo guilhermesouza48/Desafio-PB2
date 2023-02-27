@@ -19,12 +19,17 @@
 }
 
 .dayone {
-  width: 15.5vw;
-  
-  display: flex;
-  justify-content: flex-start;
-  padding: 3px;
-  background-color: #FF0024
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.9);
+  padding: 0.375rem;
+  text-align: start;
+
+  border: none;
+  box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+  border-radius: 9px 9px 0px 0px;
+  margin-right: 0.3vw;
 }
 
 .main-tesk {
@@ -62,6 +67,20 @@ h2 {
   gap: 50px;
   align-items: center;
   justify-content: center;
+  display: flex;
+  margin-top: 0.7vw;
+  margin-left: 6vw;
+}
+
+.logout {
+  color: #ffffff;
+  text-decoration: none;
+  margin-top: 10px;
+  font-family: "mulish", sans-serif;
+  background-color: #bbbbbb;
+  padding: 2px;
+  border-radius: 10%;
+  border: #818181  2px solid;
 }
 
 .txt-time {
@@ -92,6 +111,7 @@ h2 {
 
 .delete-btn {
   background-color: #ff3d1f;
+  cursor: pointer;
 }
 
 .delete-event {
@@ -131,6 +151,7 @@ h2 {
 
 .add-button {
   background-color: #00ba88;
+  cursor: pointer;
 }
 
 .ctn-button button {
@@ -158,11 +179,11 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 25px;
 }
 
 .exitDash img {
   margin-bottom: 5px;
-  margin-right: 10px;
 }
 
 .imgDash {
@@ -197,6 +218,10 @@ h2 {
   justify-content: center;
   color: #3b3e45;
   font-family: "mulish", sans-serif;
+}
+
+.weatherLoca img {
+  margin-right: 10px;
 }
 
 .weatherLoca p {

@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Dashboard.css";
 import Logo from "./compass.png";
 import icon from "./icon.png";
+import cloud from "../../components/imagens/cloud.png";
 import { Link } from "react-router-dom";
 import InputDashBoard from "../../components/Inputs/InputDash";
 import Selections from "../../components/Selection/Select";
 import axios from "axios";
+import Load from "../../components/Loading/Loading";
 
 const Dash = () => {
   const relogio = new Date();
@@ -132,8 +134,10 @@ const Dash = () => {
     })
       .then((res) => {
         return res.json();
+        
       })
       .then((data) => {
+        
         getCard(dayAPI);
         console.log(data);
       });
@@ -182,7 +186,10 @@ const Dash = () => {
             {weather?.location?.name} - {weather?.location?.region}
           </p>
 
-          <h1>{weather?.current?.temp_c}</h1>
+          <h1>
+            <img id="cloud" src={cloud} alt="Cloud" />
+            {weather?.current?.temp_c}º
+          </h1>
         </div>
 
         <div className="exitDash">
@@ -190,7 +197,9 @@ const Dash = () => {
             <img id="logoimg" src={Logo} alt="Logo compass" />
             <img id="icon" src={icon} alt="Icon" />
           </div>
-          <Link to="/">Logout</Link>
+          <Link to="/" className="logout">
+            Logout
+          </Link>
         </div>
       </header>
 
@@ -222,28 +231,29 @@ const Dash = () => {
         <div className="dayone">
           <p onClick={() => setDay("monday")}>Monday</p>{" "}
         </div>
-        <p onClick={() => setDay("tuesday")}>
-          Tuesday
-        </p>{" "}
-        <p  onClick={() => setDay("wednesday")}>
-          Wednesday
-        </p>{" "}
-        <p  onClick={() => setDay("thursday")}>
-          Thursday
-        </p>{" "}
-        <p  onClick={() => setDay("friday")}>
-          Friday
-        </p>{" "}
-        <p  onClick={() => setDay("saturday")}>
-          Saturday
-        </p>{" "}
-        <p  onClick={() => setDay("sunday")}>
-          Sunday
-        </p>{" "}
+
+        <div className="dayone">
+          <p onClick={() => setDay("tuesday")}>Tuesday</p>{" "}
+        </div>
+        <div className="dayone">
+          <p onClick={() => setDay("wednesday")}>Wednesday</p>{" "}
+        </div>
+        <div className="dayone">
+          <p onClick={() => setDay("thursday")}>Thursday</p>{" "}
+        </div>
+        <div className="dayone">
+          <p onClick={() => setDay("saturday")}>Saturday</p>{" "}
+        </div>
+        <div className="dayone">
+          <p onClick={() => setDay("sunday")}>Sunday</p>{" "}
+        </div>
       </div>
 
+     
+
       <div className="BoardDash">
-        <div className="txt-time">TIME</div>
+        <div className="txt-time">TIME </div>
+        {loading ? <Load /> : ""}
 
         {card.map((item) => {
           const timeAPI = item.createdAt.split("T");
@@ -252,7 +262,7 @@ const Dash = () => {
 
           return (
             <div className="main-tesk">
-              {loading ? <p>loading...</p> : ""}
+              
               <p className="time">{`${timeEvent[0]}h ${timeEvent[1]}m`}</p>
               <div className="card-content">
                 {" "}
@@ -260,10 +270,12 @@ const Dash = () => {
                 <button
                   className="delete-event"
                   onClick={() => deleteEvent(item._id)}
+                  
                 >
                   delete
                 </button>
               </div>
+              
             </div>
           );
         })}
